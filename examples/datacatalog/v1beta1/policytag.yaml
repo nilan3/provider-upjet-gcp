@@ -8,6 +8,7 @@ metadata:
   name: basic-policy-tag
 spec:
   forProvider:
+    region: eu
     description: A policy tag normally associated with low security items
     taxonomySelector:
       matchLabels:
@@ -25,6 +26,7 @@ metadata:
   name: my-taxonomy
 spec:
   forProvider:
+    region: eu
     activatedPolicyTypes:
     - FINE_GRAINED_ACCESS_CONTROL
     description: A collection of policy tags

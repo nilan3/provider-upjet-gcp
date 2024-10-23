@@ -8,6 +8,7 @@ metadata:
   name: basic-taxonomy
 spec:
   forProvider:
+    region: eu
     activatedPolicyTypes:
     - FINE_GRAINED_ACCESS_CONTROL
     description: A collection of policy tags
