@@ -1,4 +1,24 @@
 apiVersion: datacatalog.gcp.upbound.io/v1beta1
+kind: PolicyTagIAMBinding
+metadata:
+  annotations:
+    meta.upbound.io/example-id: datacatalog/v1beta1/policytagiammember
+    upjet.upbound.io/manual-intervention: "Binding resource refers to an existing user account"
+  labels:
+    testing.upbound.io/example-name: basic_policy_tag
+  name: basic-policy-tag
+spec:
+  forProvider:
+    members:
+    - user:asivininada@gmail.com
+    role: roles/viewer
+    policyTagSelector:
+      matchLabels:
+        testing.upbound.io/example-name: basic_policy_tag
+
+---
+
+apiVersion: datacatalog.gcp.upbound.io/v1beta1
 kind: PolicyTag
 metadata:
   annotations:
@@ -8,8 +28,8 @@ metadata:
   name: basic-policy-tag
 spec:
   forProvider:
+    displayName: basic_policy_tag
     description: A policy tag normally associated with low security items
-    displayName: Low security
     taxonomySelector:
       matchLabels:
         testing.upbound.io/example-name: my_taxonomy
@@ -26,7 +46,9 @@ metadata:
   name: my-taxonomy
 spec:
   forProvider:
+    displayName: basic_taxonomy
+    region: eu
     activatedPolicyTypes:
     - FINE_GRAINED_ACCESS_CONTROL
     description: A collection of policy tags
-    displayName: taxonomy_display_name
+

@@ -80,6 +80,12 @@ spec:
                       encoded in UTF-8. If not set, defaults to an empty description.
                       If not set, defaults to an empty description.
                     type: string
+                  displayName:
+                    description: |-
+                      User defined name of this policy tag. It must: be unique within the parent
+                      taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+                      not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
+                    type: string
                   parentPolicyTag:
                     description: |-
                       Resource name of this policy tag's parent policy tag.
@@ -261,6 +267,12 @@ spec:
                       newlines, carriage returns and page breaks; and be at most 2000 bytes long when
                       encoded in UTF-8. If not set, defaults to an empty description.
                       If not set, defaults to an empty description.
+                    type: string
+                  displayName:
+                    description: |-
+                      User defined name of this policy tag. It must: be unique within the parent
+                      taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+                      not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
                     type: string
                   parentPolicyTag:
                     description: |-
@@ -591,6 +603,11 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.displayName is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.displayName)
+                || (has(self.initProvider) && has(self.initProvider.displayName))'
           status:
             description: PolicyTagStatus defines the observed state of PolicyTag.
             properties:
@@ -608,6 +625,12 @@ spec:
                       newlines, carriage returns and page breaks; and be at most 2000 bytes long when
                       encoded in UTF-8. If not set, defaults to an empty description.
                       If not set, defaults to an empty description.
+                    type: string
+                  displayName:
+                    description: |-
+                      User defined name of this policy tag. It must: be unique within the parent
+                      taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+                      not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
                     type: string
                   id:
                     description: an identifier for the resource with format {{name}}

@@ -1697,6 +1697,11 @@ func (in *PolicyTagInitParameters) DeepCopyInto(out *PolicyTagInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DisplayName != nil {
+		in, out := &in.DisplayName, &out.DisplayName
+		*out = new(string)
+		**out = **in
+	}
 	if in.ParentPolicyTag != nil {
 		in, out := &in.ParentPolicyTag, &out.ParentPolicyTag
 		*out = new(string)
@@ -1790,6 +1795,11 @@ func (in *PolicyTagObservation) DeepCopyInto(out *PolicyTagObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DisplayName != nil {
+		in, out := &in.DisplayName, &out.DisplayName
+		*out = new(string)
+		**out = **in
+	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
 		*out = new(string)
@@ -1827,6 +1837,11 @@ func (in *PolicyTagParameters) DeepCopyInto(out *PolicyTagParameters) {
 	*out = *in
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.DisplayName != nil {
+		in, out := &in.DisplayName, &out.DisplayName
 		*out = new(string)
 		**out = **in
 	}
@@ -4011,8 +4026,18 @@ func (in *TaxonomyInitParameters) DeepCopyInto(out *TaxonomyInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DisplayName != nil {
+		in, out := &in.DisplayName, &out.DisplayName
+		*out = new(string)
+		**out = **in
+	}
 	if in.Project != nil {
 		in, out := &in.Project, &out.Project
+		*out = new(string)
+		**out = **in
+	}
+	if in.Region != nil {
+		in, out := &in.Region, &out.Region
 		*out = new(string)
 		**out = **in
 	}
@@ -4079,6 +4104,11 @@ func (in *TaxonomyObservation) DeepCopyInto(out *TaxonomyObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DisplayName != nil {
+		in, out := &in.DisplayName, &out.DisplayName
+		*out = new(string)
+		**out = **in
+	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
 		*out = new(string)
@@ -4127,6 +4157,11 @@ func (in *TaxonomyParameters) DeepCopyInto(out *TaxonomyParameters) {
 	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.DisplayName != nil {
+		in, out := &in.DisplayName, &out.DisplayName
 		*out = new(string)
 		**out = **in
 	}

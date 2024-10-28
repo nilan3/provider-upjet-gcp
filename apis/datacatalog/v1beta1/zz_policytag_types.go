@@ -21,6 +21,11 @@ type PolicyTagInitParameters struct {
 	// If not set, defaults to an empty description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// User defined name of this policy tag. It must: be unique within the parent
+	// taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+	// not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
+	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
 	// Resource name of this policy tag's parent policy tag.
 	// If empty, it means this policy tag is a top level policy tag.
 	// If not set, defaults to an empty string.
@@ -61,6 +66,11 @@ type PolicyTagObservation struct {
 	// If not set, defaults to an empty description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// User defined name of this policy tag. It must: be unique within the parent
+	// taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+	// not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
+	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
 	// an identifier for the resource with format {{name}}
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -85,6 +95,12 @@ type PolicyTagParameters struct {
 	// If not set, defaults to an empty description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// User defined name of this policy tag. It must: be unique within the parent
+	// taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+	// not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
+	// +kubebuilder:validation:Optional
+	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Resource name of this policy tag's parent policy tag.
 	// If empty, it means this policy tag is a top level policy tag.
@@ -153,8 +169,9 @@ type PolicyTagStatus struct {
 type PolicyTag struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              PolicyTagSpec   `json:"spec"`
-	Status            PolicyTagStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.displayName) || (has(self.initProvider) && has(self.initProvider.displayName))",message="spec.forProvider.displayName is a required parameter"
+	Spec   PolicyTagSpec   `json:"spec"`
+	Status PolicyTagStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
